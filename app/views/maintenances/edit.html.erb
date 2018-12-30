@@ -1,0 +1,5 @@
+<h1> Maintenance ID: <%= @maintenance.id %></h1>
+<h2> Equipment: <%= @maintenance.equipment.name %> | <%= @maintenance.equipment.code %> </h2>
+<h3> Technician: <%= @maintenance.user.username %> </h3>
+
+<%= render 'form' %>
