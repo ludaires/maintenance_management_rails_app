@@ -9,6 +9,7 @@ class MaintenancesController < ApplicationController
     def new
         # fake user until I create a user and session controller.
         @maintenance = Maintenance.new
+        @inspection = @maintenance.inspections.build
         @user = User.first
     end
 
@@ -21,6 +22,7 @@ class MaintenancesController < ApplicationController
     end
 
     def edit
+        @inspection = @maintenance.inspections
         @user = User.first
     end 
 
@@ -45,7 +47,13 @@ class MaintenancesController < ApplicationController
                 :status, 
                 :next_maintenance_date,
                 :notes,
-                :maintenance_type
+                :maintenance_type,
+                inspections_attributes: [
+                    :part_id,
+                    :issue_id,
+                    :cause_id,
+                    :action_id
+                ]
             )
         end
 

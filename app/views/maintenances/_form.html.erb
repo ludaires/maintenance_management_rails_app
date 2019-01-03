@@ -1,5 +1,6 @@
 <%= form_for @maintenance do |f|%>
 
+    <%= f.hidden_field(:user_id, :value => @user.id) %>
     <%= f.label :equipment_id %>
     <%= f.collection_select(:equipment_id, Equipment.all, :id, :name) %><br>
     <br>
@@ -17,6 +18,26 @@
     <%= f.text_field :notes %><br>
     <br>
     <%= f.hidden_field(:user_id, :value => @user.id) %>
+    <br>
+    <%# Nested form - inspection  %>
+    <p>Parts to be inspect </p>
+    <%= f.fields_for :inspections do |i| %>
+        <%= i.collection_select(:part_id, Part.all, :id, :description) %>
+
+        <%= i.collection_select(:issue_id, Issue.all, :id, :title) %>
+
+        <%= i.collection_select(:cause_id, Cause.all, :id, :title) %>
+
+        <%= i.collection_select(:action_id, Action.all, :id, :title) %>
+
+    <% end %><br>
+
+    <br>
+
+       
+
+
+
     <%= f.submit %>
 
 <% end %>
