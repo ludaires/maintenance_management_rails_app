@@ -10,12 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_26_222904) do
+ActiveRecord::Schema.define(version: 2019_01_03_184904) do
 
-  create_table "codes", force: :cascade do |t|
+  create_table "actions", force: :cascade do |t|
     t.string "code"
-    t.string "code_type"
     t.string "title"
+    t.string "code_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "causes", force: :cascade do |t|
+    t.string "code"
+    t.string "title"
+    t.string "code_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -33,14 +41,26 @@ ActiveRecord::Schema.define(version: 2018_12_26_222904) do
   end
 
   create_table "inspections", force: :cascade do |t|
-    t.integer "part_id"
-    t.integer "code_id"
     t.integer "maintenance_id"
+    t.integer "part_id"
+    t.integer "issue_id"
+    t.integer "action_id"
+    t.integer "cause_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["code_id"], name: "index_inspections_on_code_id"
+    t.index ["action_id"], name: "index_inspections_on_action_id"
+    t.index ["cause_id"], name: "index_inspections_on_cause_id"
+    t.index ["issue_id"], name: "index_inspections_on_issue_id"
     t.index ["maintenance_id"], name: "index_inspections_on_maintenance_id"
     t.index ["part_id"], name: "index_inspections_on_part_id"
+  end
+
+  create_table "issues", force: :cascade do |t|
+    t.string "code"
+    t.string "title"
+    t.string "code_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "maintenances", force: :cascade do |t|

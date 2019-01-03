@@ -236,7 +236,17 @@ puts 'Seeding the equipment...'
         code: 'P18',
         code_type: 'Problemas',
         title: 'Leitura Incorreta'
-    },
+    }
+].each { |issue|
+        Issue.find_or_create_by(code: issue[:code]) do |c|
+            c.code = issue[:code]
+            c.code_type = issue[:code_type]
+            c.title = issue[:title]
+        end
+    }
+
+
+[
     {
         code: 'C1',
         code_type: 'Causas',
@@ -331,7 +341,19 @@ puts 'Seeding the equipment...'
         code: 'C19',
         code_type: 'Causas',
         title: 'Sujeira'
-    },
+    }
+].each { |cause|
+        Cause.find_or_create_by(code: cause[:code]) do |c|
+            c.code = cause[:code]
+            c.code_type = cause[:code_type]
+            c.title = cause[:title]
+        end
+    }
+
+
+
+
+[
     {
         code: 'A1',
         code_type: 'Ações',
@@ -418,7 +440,7 @@ puts 'Seeding the equipment...'
         title: 'Rotina de Testes'
     }
 ].each { |code|
-    Code.find_or_create_by(code: code[:code]) do |c|
+    Action.find_or_create_by(code: code[:code]) do |c|
         c.code = code[:code]
         c.code_type = code[:code_type]
         c.title = code[:title]

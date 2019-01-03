@@ -10,8 +10,11 @@ Rails.application.routes.draw do
   end
   
   resources :maintenances do 
-    resources :inspections
+    # resources :inspections, only: [:show, :index]
+    # resources :inspections
   end
+
+  #  resources :inspections
 
   delete '/inspections/:id/delete' => 'inspections#destroy'
 
