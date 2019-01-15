@@ -7,4 +7,10 @@
 <p> <strong> Type: </strong> <%= @maintenance.maintenance_type %> </p> 
 <p> <strong> Notes: </strong> <%= @maintenance.notes %> </p>
 
-<%# <%= link_to "Delete Maintenance", maintenance_path(@maintenance), method: :delete %>
+<% @maintenance.inspections.each do |i| %>
+    <%= i.part.description %> | <%= i.issue.code_type %>: <%= i.issue.title %> |  <%= i.cause.code_type %>: <%= i.cause.title %> |  <%= i.action.code_type %>: <%= i.action.title %> |  <%= link_to "Edit Inspection", ([:edit, @maintenance, i]) %><br>
+    <br>
+<% end %>
+<br>
+<h3>Add new Item to be Inspected</h3>
+<%= link_to "Add Inspection", new_maintenance_inspection_path(@maintenance, Inspection.new) %>
