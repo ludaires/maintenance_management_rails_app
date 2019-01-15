@@ -19,6 +19,7 @@ class MaintenancesController < ApplicationController
     end
 
     def show
+        
     end
 
     def edit
