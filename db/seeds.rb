@@ -146,6 +146,8 @@ puts 'Seeding the equipment...'
     end
 }
 
+
+puts 'Seeding Issues, Causes and Actions...'
 [
     {
         code: 'P1',
@@ -352,7 +354,6 @@ puts 'Seeding the equipment...'
 
 
 
-
 [
     {
         code: 'A1',
@@ -448,6 +449,8 @@ puts 'Seeding the equipment...'
 }
 
 # Populate Parts Table
+
+puts 'Seeding the Parts...'
 [
     {
         description: 'Display'
@@ -525,3 +528,5 @@ puts 'Seeding the equipment...'
     Part.find_or_create_by(description: part[:description])
 }
 
+puts 'Creating the user test'
+User.create(username: "user_test", password: "123", email: "user@test.com")
