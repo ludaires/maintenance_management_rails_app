@@ -20,24 +20,18 @@
     <%= f.hidden_field(:user_id, :value => @user.id) %>
     <br>
     <%# Nested form - inspection  %>
-    <p>Parts to be inspect </p>
+    <h2>Parts to be inspect </h2>
     <%= f.fields_for :inspections do |i| %>
-        <%= i.collection_select(:part_id, Part.all, :id, :description) %>
-
-        <%= i.collection_select(:issue_id, Issue.all, :id, :title) %>
-
-        <%= i.collection_select(:cause_id, Cause.all, :id, :title) %>
-
-        <%= i.collection_select(:action_id, Action.all, :id, :title) %>
-
-    <% end %><br>
-
+        <%= i.label "Item checked" %>
+        <%= i.collection_select(:part_id, Part.all, :id, :description, {:include_blank => 'Please Select'}) %>
+        <%= i.label :issue %>
+        <%= i.collection_select(:issue_id, Issue.all, :id, :title, {:include_blank => 'Please Select'}) %>
+        <%= i.label :cause %>
+        <%= i.collection_select(:cause_id, Cause.all, :id, :title, {:include_blank => 'Please Select'}) %>
+        <%= i.label :action %>
+        <%= i.collection_select(:action_id, Action.all, :id, :title, {:include_blank => 'Please Select'}) %><br>
+        
+    <% end %>
     <br>
-
-       
-
-
-
     <%= f.submit %>
-
 <% end %>
