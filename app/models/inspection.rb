@@ -5,6 +5,4 @@ class Inspection < ApplicationRecord
   belongs_to :cause
   belongs_to :action
 
- 
-
 end
