@@ -1,6 +1,9 @@
-<% if @user %>
-    <h1> Welcome <%= @user.username %> </h1>
+<%= flash[:message] if flash[:message] %>
+<% if logged_in? %>
+    <h1> Welcome <%= current_user.username %> </h1>
+    <%= link_to "Log Out", logout_path, method: :delete %>
 <% else %>
-    <p> Signup </p>
-    <p> LogIn </p>
+    <h1>Welcome </h1>
+    <p> <%= link_to "Sign Up", signup_path %> </p>
+    <p> <%= link_to "Log In", login_path %> </p>
 <% end %>
