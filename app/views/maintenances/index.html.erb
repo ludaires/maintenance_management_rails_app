@@ -3,7 +3,11 @@
 <h1> List of all Maintenances </h1>
 
 <% @maintenances.each do |maintenance| %>
-    <h2> Maintenance ID: <%= maintenance.id %></h2>
+    <h2> Maintenance ID: <%= maintenance.id %> | <%= maintenance.status %></h2>
     <p> Equipment: <%= maintenance.equipment.name %> | <%= maintenance.equipment.code %> </p>
     <p> Technician: <%= maintenance.user.username %> </p>
-<% end %> <br>
+    <% if maintenance.notes != "" %>
+        <p>Notes: <%= maintenance.notes %>
+    <% end %>
+<% end %> 
+<br>
