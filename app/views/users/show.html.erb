@@ -1,0 +1,18 @@
+
+<h3><%= flash[:message] if flash[:message] %></h3>
+
+<h1>Welcome, <%= current_user.username.capitalize %> </h1>
+
+<h2>List of your maintenances: </h2>
+<% current_user.maintenances.each do |maintenance| %>
+    <%# TODO: REFACTORY THIS TO A HELPER. I USED THIS CODE IN MAINTENANCE/SHOW %>
+    <%= link_to " #{maintenance.id} | #{maintenance.equipment.name} | #{maintenance.equipment.code} | #{maintenance.status} " , maintenance %> <br>
+    <% if maintenance.status == "In progress" || current_user.admin %>
+        <%= link_to "Close Maintenance", edit_maintenance_path(maintenance) %>  | <%= link_to "Delete Maintenance", maintenance_path(maintenance), method: :delete, data: {confirm: "Are you sure you want to delete?"} %><br><br>
+    <% else %>
+        <%= link_to "Delete Maintenance", maintenance_path(maintenance), method: :delete, data: {confirm: "Are you sure you want to delete?"} %><br><br>
+    <% end %>
+<% end %> <br>
+<br>
+
+<h3> <%= link_to "Create a new Maintenance", new_maintenance_path %></h3>
