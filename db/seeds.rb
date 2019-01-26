@@ -529,4 +529,4 @@ puts 'Seeding the Parts...'
 }
 
 puts 'Creating the user test'
-User.create(username: "user_test", password: "123", email: "user@test.com")
+User.create(username: "user_test", password: "123", email: "user@test.com", admin: true)
