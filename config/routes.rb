@@ -22,7 +22,7 @@ Rails.application.routes.draw do
 
   delete '/logout', to: 'sessions#destroy'
 
-  delete '/inspections/:id/delete' => 'inspections#destroy'
+  # delete '/inspections/:id/delete' => 'inspections#destroy'
 
 
 
