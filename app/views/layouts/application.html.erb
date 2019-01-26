@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>MaintenanceManagementRailsApp</title>
+    <title>Management</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -10,6 +10,24 @@
   </head>
 
   <body>
+    <div >
+      <nav> 
+        <% if logged_in? %>
+          <%= link_to "Maintenances", maintenances_path %>     
+          <%= link_to "Profile", user_path(current_user) %>  
+          <%= link_to "Log Out", logout_path, method: :delete %>        
+      <% else %>
+          <%= link_to "Sign Up", signup_path %>
+          <%= link_to "Log In", login_path %>
+      <% end %>  
+     </nav>  
+    </div>  
+
     <%= yield %>
+    <br>
+    <footer >
+      <span>Maintenance Management</span>
+      <small>&copy; 2019</small>        
+    </footer>
   </body>
 </html>
