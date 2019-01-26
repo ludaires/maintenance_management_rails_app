@@ -1,12 +1,12 @@
 <%= form_for @maintenance do |f|%>
 
-    <%= f.hidden_field(:user_id, :value => @user.id) %>
+    <%= f.hidden_field(:user_id, :value => current_user.id) %>
     <%= f.label :equipment_id %>
     <%= f.collection_select(:equipment_id, Equipment.all, :id, :name) %><br>
     <br>
     <%# I want to create a condition, if this is a edit form, I'll show more two options.%>
     <%= f.label :status %>
-    <%= f.select :status, options_for_select(["In progress", "Approved", "Reproved"]) %><br>
+    <%= f.select :status, options_for_select(["In progress"]) %><br>
     <br>
     <%= f.label :maintenance_type %>
     <%= f.select :maintenance_type, options_for_select([ "Preventive", "Corrective" ], "Preventive") %><br>
@@ -17,7 +17,6 @@
     <%= f.label :notes %>
     <%= f.text_field :notes %><br>
     <br>
-    <%= f.hidden_field(:user_id, :value => @user.id) %>
     <br>
     <%# Nested form - inspection  %>
     <h2>Parts to be inspect </h2>
