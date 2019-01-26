@@ -9,7 +9,8 @@
 
 <h1>Itens Verified</h1>
 <%= @inspection.part.description %> |  <%= @inspection.issue.code_type %>:<%= @inspection.issue.title %> |  <%= @inspection.cause.code_type %>:<%= @inspection.cause.title %> |  <%= @inspection.action.code_type %>:<%= @inspection.action.title %>
-<%= link_to "Edit Inspection", ([:edit, @maintenance, @inspection])%>
+<%= link_to "Edit Inspection", ([:edit, @maintenance, @inspection])%> | <%= link_to "Delete Inspection", maintenance_inspection_path(@maintenance, @inspection), method: :delete %><br>
 
 <h3> Add new Inspection </h3>
 <%= link_to "Add new Inspection", ([:new, @maintenance, :inspection]) %>
+<%= link_to "Back to maintenance", maintenance_path(@maintenance) %>
