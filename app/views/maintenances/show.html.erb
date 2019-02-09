@@ -12,20 +12,18 @@
     <h2>Items Inspected </h2>
     <% @maintenance.inspections.each do |i| %>
         <%= i.part.description %> | <%= i.issue.code_type %>: <%= i.issue.title %> |  <%= i.cause.code_type %>: <%= i.cause.title %> |  <%= i.action.code_type %>: <%= i.action.title %> <br> 
-        <%= link_to "Edit Inspection", ([:edit, @maintenance, i]) %> | <%= link_to "Delete Inspection", maintenance_inspection_path(@maintenance, i), method: :delete, data: {confirm: "Are you sure you want to delete?"} %><br>
+            <%= link_to "Edit Inspection", ([:edit, @maintenance, i]) %> | <%= link_to "Delete Inspection", maintenance_inspection_path(@maintenance, i), method: :delete, data: {confirm: "Are you sure you want to delete?"} %><br>
         <br>
     <% end %>
 
     <%# TODO: REFACTORY THIS TO A HELPER. I USED THIS CODE IN USERS/SHOW %>
     <% if @maintenance.status == "In progress" %>
         <%= link_to "Close Maintenance", edit_maintenance_path(@maintenance) %>  | <%= link_to "Delete Maintenance", maintenance_path(@maintenance), method: :delete, data: {confirm: "Are you sure you want to delete this maintenance?"} %><br><br>
-    <% elsif @maintenance.status ==  %>
+        <h3> <%= link_to "Add new Item to be Inspected", new_maintenance_inspection_path(@maintenance, Inspection.new) %></h3>
+    <% else @maintenance.status != "In progress"   %>
         <%= link_to "Delete Maintenance", maintenance_path(@maintenance), method: :delete, data: {confirm: "Are you sure you want to delete this maintenance?"} %><br><br>
     <% end %>
 
-
-
-    <h3> <%= link_to "Add new Item to be Inspected", new_maintenance_inspection_path(@maintenance, Inspection.new) %></h3>
 <% else %>
 
     <h1>There is something wrong!</h1>
