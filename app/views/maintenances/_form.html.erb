@@ -1,8 +1,15 @@
 <%= form_for @maintenance do |f|%>
 
     <%= f.hidden_field(:user_id, :value => current_user.id) %>
-    <%= f.label :equipment_id %>
-    <%= f.collection_select(:equipment_id, Equipment.all, :id, :name) %><br>
+    <%# <%= f.label :equipment_id %>
+    <label for="equipment">Equipment:</label>
+    <select id="equipment"name="maintenance[equipment_id]">
+        <% Equipment.all.each do |equipment| %>
+        <option value="<%=equipment.id%> "><%= "#{equipment.code} - #{equipment.name}" %></option>
+        <% end %>
+    </select>        
+    <%# <%= f.collection_select(:equipment_id, Equipment.all, :id, [:name, :code]) %>
+    <br>
     <br>
     <%# I want to create a condition, if this is a edit form, I'll show more two options.%>
     <%= f.label :status %>
