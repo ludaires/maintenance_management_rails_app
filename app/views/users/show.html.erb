@@ -1,7 +1,7 @@
 
 <h3><%= flash[:message] if flash[:message] %></h3>
 
-<h1>Welcome, <%= current_user.username.capitalize %> </h1>
+<h1>Welcome, <%= current_user.username.titleize %> </h1>
 
 <h2>List of your maintenances: </h2>
 <% current_user.maintenances.each do |maintenance| %>
