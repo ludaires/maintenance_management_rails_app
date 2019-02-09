@@ -7,9 +7,13 @@ class InspectionsController < ApplicationController
     end
 
     def create
-        @inspection = @maintenance.inspections.create(inspections_params)
-       
-        redirect_to maintenance_inspection_path(@inspection.maintenance, @inspection)
+        @inspection = @maintenance.inspections.build(inspections_params)
+        if @inspection.save
+            redirect_to maintenance_inspection_path(@maintenance, @inspection)
+        else
+            flash[:message] = "Something went wrong: #{@inspection.errors.full_messages.to_sentence}"
+            redirect_to new_maintenance_inspection_path(@maintenance)
+        end
     end
 
     def show
@@ -22,8 +26,12 @@ class InspectionsController < ApplicationController
 
     def update
         @inspection = @maintenance.inspections.find_by(id: params[:id])
-        @inspection.update(inspections_params)
-        redirect_to maintenance_path(@maintenance)
+        if @inspection.update(inspections_params)
+            redirect_to maintenance_path(@maintenance)
+        else
+            flash[:message] = "Something went wrong: #{@inspection.errors.full_messages.to_sentence}"
+            redirect_to edit_maintenance_inspection_path(@maintenance, @inspection)
+        end
     end
 
     def destroy
@@ -42,7 +50,6 @@ class InspectionsController < ApplicationController
     end
 
     def redirect_if_not_authorized!
-        set_maintenance
         if @maintenance.user != current_user && !current_user.admin
             flash[:message] = "You user don't have the permission to make this action!"
             redirect_to user_path(current_user)
