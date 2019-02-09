@@ -1,5 +1,6 @@
 class InspectionsController < ApplicationController
     before_action :set_maintenance, only: [:new, :create, :show, :edit, :update, :destroy]
+    before_action :redirect_if_not_authorized!, only: [:new, :create, :edit, :update, :destroy]
 
     def new
         @inspection = @maintenance.inspections.build
@@ -39,4 +40,15 @@ class InspectionsController < ApplicationController
     def set_maintenance
         @maintenance = Maintenance.find_by(id: params[:maintenance_id])
     end
+
+    def redirect_if_not_authorized!
+        set_maintenance
+        if @maintenance.user != current_user && !current_user.admin
+            flash[:message] = "You user don't have the permission to make this action!"
+            redirect_to user_path(current_user)
+        end
+    end
+
+
+
 end
