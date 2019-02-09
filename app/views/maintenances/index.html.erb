@@ -3,7 +3,7 @@
 <h1> List of all Maintenances </h1>
 
 <% @maintenances.each do |maintenance| %>
-    <h2> Maintenance ID: <%= maintenance.id %> | <%= maintenance.status %></h2>
+    <h2> <%= link_to "Maintenance ID:  #{maintenance.id} | #{maintenance.status}", maintenance_path(maintenance) %></h2>
     <p> Equipment: <%= maintenance.equipment.name %> | <%= maintenance.equipment.code %> </p>
     <p> Technician: <%= maintenance.user.username %> </p>
     <% if maintenance.notes != "" %>
