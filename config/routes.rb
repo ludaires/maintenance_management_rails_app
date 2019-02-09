@@ -3,6 +3,9 @@ Rails.application.routes.draw do
 
   root 'welcome#home'
 
+  get '/auth/google_oauth2/callback', to: 'sessions#create_from_omniauth'
+
+
   resources :users do 
     resources :codes, only: [:new, :index, :show]
     resources :parts, only: [:new, :index]
@@ -11,6 +14,9 @@ Rails.application.routes.draw do
   
   resources :maintenances do 
     # resources :inspections, only: [:show, :index]
+    collection do 
+      get 'ordered_by_next_maintenance'
+    end
     resources :inspections
   end
 
