@@ -1,0 +1,3 @@
+<% @maintenances.each do |m| %>
+    <p><%= m.equipment.name %> | <%= m.equipment.code %> | <%= m.next_maintenance_date %></p>
+<% end %>
