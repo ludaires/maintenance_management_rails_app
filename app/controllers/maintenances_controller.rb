@@ -30,7 +30,7 @@ class MaintenancesController < ApplicationController
                 redirect_to maintenance_path(@maintenance)
             else
                 flash[:message] = "Something went wrong: #{@maintenance.errors.full_messages.to_sentence}"
-                redirect_to new_maintenance_path
+                render new_maintenance_path
             end
         end         
     end
@@ -46,11 +46,13 @@ class MaintenancesController < ApplicationController
     def update
         if @maintenance.update(maintenance_params)
             redirect_to maintenance_path(@maintenance)
+        else
+            flash[:message] = "#{@maintenance.errors.full_messages.to_sentence}"
+            redirect_to edit_maintenance_path(@maintenance)
         end
     end
 
     def destroy
-        # @maintenance.inspections.each { |i| i.delete }
         @maintenance.delete
         redirect_to user_path(current_user)
     end
