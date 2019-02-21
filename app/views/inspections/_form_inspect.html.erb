@@ -10,5 +10,5 @@
     <%= i.label :action %>
     <%= i.collection_select(:action_id, Action.all, :id, :title, {:include_blank => 'Please Select'}) %><br>
     <br>
-    <%= i.submit %>
+    <%= i.submit class: "btn btn-primary" %>
 <% end %>
