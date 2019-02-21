@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   resources :users do 
     resources :codes, only: [:new, :index, :show]
     resources :parts, only: [:new, :index]
-    resources :equipment, only: [:new, :index]
+    resources :equipment, only: [:new, :index, :show]
   end
   
   resources :maintenances do 
