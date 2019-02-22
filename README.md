@@ -1,24 +1,27 @@
-# README
+# Maintenance Management
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Helping maintenance teams keep a record of all assets they are responsible for, schedule and track maintenance tasks, and keep a historical record of work they perform.
 
-Things you may want to cover:
+This project is currently built on Ruby on Rails for https://flatironschool.com/career-courses/coding-bootcamp/online/.
 
-* Ruby version
+## Installation
 
-* System dependencies
+Fork and clone the repo. This app requires bundle for all its gem dependencies. If you do not already have it installed, run
 
-* Configuration
+$ gem install bundler
 
-* Database creation
+then:
 
-* Database initialization
+$ bundle install
 
-* How to run the test suite
+Run $ rake db:migrate to set up the database
 
-* Services (job queues, cache servers, search engines, etc.)
+Run $ rake db:seed to seed the database
 
-* Deployment instructions
+Run $ rails server to start a local server on port 3000
 
-* ...
+### Contribution
+Please create a descriptive pull request.
+
+#### License
+Maintenance Management app is released under the MIT License. Check LICENSE.md for more information.
