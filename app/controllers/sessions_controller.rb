@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
     def create
        @user = User.find_by(username: params[:username])
        if @user  && @user.authenticate(params[:password])
-        session[:user_id] = @user.id
+        set_session
         redirect_to user_path(@user)
        else
         flash[:message] = "Something went wrong!"
@@ -16,13 +16,8 @@ class SessionsController < ApplicationController
     end
 
     def create_from_omniauth
-        @user = User.find_or_create_by(email: auth[:info][:email]) do |user|
-            user.username = auth[:info][:name]
-            user.password = SecureRandom.hex
-        end
-
-        session[:user_id] = @user.id
-
+       @user = User.create_from_google(auth)
+        set_session
         if logged_in?
             flash[:message] = "Successfully authenticated via Google!"
             redirect_to user_path(@user)
@@ -42,4 +37,5 @@ class SessionsController < ApplicationController
     def auth
         request.env['omniauth.auth']
     end
+
 end
