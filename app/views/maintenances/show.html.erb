@@ -1,4 +1,4 @@
-<%= flash[:message] if flash[:message]%>
+<p class="text-danger"><%= flash[:message] if flash[:message]%></p>
 
 <% if @maintenance %>
     <h2><strong> Equipment:</strong> <%= @maintenance.equipment.name %> | <%= @maintenance.equipment.code %> </h2>

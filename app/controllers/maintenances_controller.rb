@@ -15,7 +15,7 @@ class MaintenancesController < ApplicationController
     def new
         @maintenance = Maintenance.new
         @inspection = @maintenance.inspections.build
-        @user = current_user
+        # @user = current_user
     end
 
     def create
