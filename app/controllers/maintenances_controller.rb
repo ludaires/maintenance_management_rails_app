@@ -15,12 +15,11 @@ class MaintenancesController < ApplicationController
     def new
         @maintenance = Maintenance.new
         @inspection = @maintenance.inspections.build
-        # @user = current_user
     end
 
+    # create an maintenance based on the current user. 
     def create
         @maintenance = current_user.maintenances.build(maintenance_params)
-        # binding.pry
         if @maintenance.equipment.in_progress? 
             flash[:message] = "This equipment: #{@maintenance.equipment.name} has already an open maintenance. It needs to be closed first to open a new one."
             redirect_to user_path(current_user)
